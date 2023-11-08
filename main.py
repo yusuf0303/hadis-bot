@@ -29,11 +29,21 @@ worked_days = (current_date - start_date).days
 
 users = []
 users_removed = []
+usernames = []
+
+
+@dp.message_handler(commands=['add'])
+async def send_msg_to_users(message: types.Message):
+    for user in users:
+        await bot.send_message(chat_id=user,
+                               text="Ботдаги янгиликлардан фойдаланиш учун /start "
+                                    "командаси орқали уни қайта ишга туширинг")
 
 
 async def check_user(message: types.Message):
     if message.chat.id not in users:
         users.append(message.chat.id)
+        usernames.append(message.chat.username)
         print("User successfully added ✅")
     else:
         print("User has already added ✅")
