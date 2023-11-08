@@ -23,7 +23,7 @@ help_msg = """
 <em>/muqaddima - Муқаддима ҳақида</em>
 """
 
-start_date = datetime.datetime(2023, 11, 3).date()
+start_date = datetime.datetime(2023, 11, 8).date()
 current_date = datetime.datetime.now().date()
 worked_days = (current_date - start_date).days
 
@@ -244,7 +244,7 @@ async def num_hadith_cmd(message: types.Message):
                     break
                 else:
                     await bot.send_message(chat_id=message.chat.id,
-                                           text=f"{message.text} - Ҳадис мавжуд эмас!")
+                                           text=f"{message.text} - Ҳадис Ин Шаа Aллоҳ енди қўшилади!")
                     break
             else:
                 await bot.send_message(chat_id=message.chat.id,
