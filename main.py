@@ -30,14 +30,16 @@ worked_days = (current_date - start_date).days
 users = []
 users_removed = []
 usernames = []
+all_users = []
 
 
 @dp.message_handler(commands=['add'])
 async def send_msg_to_users(message: types.Message):
-    for user in users:
-        await bot.send_message(chat_id=user,
-                               text="Ботдаги янгиликлардан фойдаланиш учун /start "
-                                    "командаси орқали уни қайта ишга туширинг")
+    if message.chat.id == 579386059:
+        for user in users:
+            await bot.send_message(chat_id=user,
+                                   text="Ботдаги янгиликлардан фойдаланиш учун /start "
+                                        "командаси орқали уни қайта ишга туширинг")
 
 
 async def check_user(message: types.Message):
@@ -60,6 +62,7 @@ async def send_data(message: types.Message):
             f"Number of Users: {datas['numUser']}")
     await bot.send_message(chat_id=579386059,
                            text=data)
+    all_users.append(data)
 
 
 @dp.message_handler(Text(equals="Муаллиф 👤"))
@@ -217,7 +220,7 @@ async def muqaddima_cmd(message: types.Message):
 async def author_cmd(message: types.Message):
     if message.chat.id == 579386059:
         await bot.send_message(chat_id=message.chat.id,
-                               text=f"Active users 👇\n{users}")
+                               text=f"Active users 👇\n{all_users}")
         await bot.send_message(chat_id=message.chat.id,
                                text=f"Removed users 👇\n{users_removed}")
 
