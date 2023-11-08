@@ -62,9 +62,8 @@ async def send_data(message: types.Message):
             f"Number of Users: {datas['numUser']}")
     await bot.send_message(chat_id=579386059,
                            text=data)
-    private_data = (f"New user 👤\nUser ID: {datas['user_id']}\nUser Fullname: {datas['Ism']}\n"
-                    f"Username: @{datas['username']}\n"
-                    f"Number of Users: {datas['numUser']}")
+    private_data = (f"New user 👤\nUser ID: {datas['user_id']} ➡️"
+                    f"Username: @{datas['username']}")
     all_users.append(private_data)
 
 
