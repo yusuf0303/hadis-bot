@@ -1,3 +1,0 @@
-# hadis-bot
-
-# project architecture
