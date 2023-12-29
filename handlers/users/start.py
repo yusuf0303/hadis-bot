@@ -2,7 +2,6 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.builtin import CommandStart
 
-import mysql.connector
 import utils.misc.subscription
 
 from data.config import CHANNELS
@@ -16,13 +15,6 @@ from states.start import StartCMD
 from states.surahs import Surah
 from states.ayahs import Ayah
 from states.sajda_ayahs import SajdaAyah
-
-db_connection = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='',
-    database='quran_bot'
-)
 
 channels_format = str()
 
@@ -44,16 +36,6 @@ async def bot_start(message: types.Message, state: FSMContext):
                              parse_mode="HTML",
                              reply_markup=check_btn)
         await StartCMD.startcmd.set()
-
-        fname = message.chat.first_name
-        sname = message.chat.last_name
-        user_id = message.chat.id
-        username = message.chat.username
-        cursor = db_connection.cursor()
-        query = "INSERT INTO users_list (fname, sname, user_id, username) VALUES (%s, %s, %s, %s)"
-        values = (fname, sname, user_id, username)
-        cursor.execute(query, values)
-        db_connection.commit()
     else:
         await message.answer(f"Assalomu alaykum, {message.from_user.full_name}!\n"
                              f"Quran By Ayah botiga xush kelinsiz 🤗", reply_markup=main_kb)
